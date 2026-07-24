@@ -1,12 +1,17 @@
-# XivaScarf - Sistem Penjualan Jilbab Berbasis Web
+XivaScarf - Sistem Penjualan Jilbab Berbasis Web
 
 XivaScarf adalah aplikasi e-commerce boutique penjualan jilbab modern berbasis web yang mengintegrasikan **Firebase Authentication**, **Cloud Firestore**, **Bootstrap 5**, **Chart.js** untuk grafik statistik penjualan admin, serta **jsPDF** & **SheetJS (XLSX)** untuk laporan transaksi.
 
 ---
+👨‍🎓 Identitas Mahasiswa
 
-## 🌟 Fitur Utama
+- Nama : Syifa ulmuna
+- NIM : 220170193
+  
+---
+🌟 Fitur Utama
 
-### 🛠️ Fitur Admin
+🛠️ Fitur Admin
 - **Dashboard Statistik & KPI**: Ringkasan jumlah produk, total pelanggan, jumlah pesanan, dan total omzet penjualan.
 - **Grafik Penjualan Interaktif (Chart.js)**: Line chart grafik penjualan bulanan, doughnut chart produk terlaris, dan bar chart kategori terpopuler.
 - **CRUD Produk Jilbab**: Tambah, edit, hapus, dan cari produk dengan dukungan preview gambar, varian warna, ukuran, dan penyesuaian stok.
@@ -15,7 +20,7 @@ XivaScarf adalah aplikasi e-commerce boutique penjualan jilbab modern berbasis w
 - **Data Pelanggan**: Daftar pengguna terdaftar beserta riwayat total transaksi.
 - **Laporan Penjualan & Ekspor**: Filter laporan transaksi (Harian, Bulanan, Tahunan, Custom Tanggal) serta ekspor instan ke format **PDF** dan **Excel (XLSX)**.
 
-### 🛍️ Fitur Pelanggan (Customer)
+🛍️ Fitur Pelanggan (Customer)
 - **Katalog Jilbab Interactive**: Pencarian live dan filter cepat berdasarkan kategori.
 - **Detail Produk**: Galeri gambar, informasi stok, pilihan warna, ukuran, serta tombol *Tambah ke Keranjang* dan *Wishlist*.
 - **Keranjang Belanja**: Atur kuantitas item, kalkulasi otomatis subtotal dan total bayar, hapus item.
@@ -26,7 +31,7 @@ XivaScarf adalah aplikasi e-commerce boutique penjualan jilbab modern berbasis w
 
 ---
 
-## 🎨 Tema Warna Design System
+🎨 Tema Warna Design System
 
 | Elemen | Kode Warna | Visual |
 |---|---|---|
@@ -38,13 +43,13 @@ XivaScarf adalah aplikasi e-commerce boutique penjualan jilbab modern berbasis w
 
 ---
 
-## 🚀 Uji Coba Instan (Demo Mode & Firebase Support)
+🚀 Uji Coba Instan (Demo Mode & Firebase Support)
 
 Aplikasi XivaScarf dilengkapi dengan **Dual-Mode Data Layer**:
 1. **Live Firebase Mode**: Menghubungkan secara otomatis ke Firebase Auth & Firestore dengan mengatur konfigurasi di `js/firebase-config.js`.
 2. **Instant Local Demo Mode**: Jika dijalankan langsung di peramban, data awal (*seed data*) produk, kategori, pesanan, dan pengguna otomatis terisi sehingga seluruh fitur Admin & Pelanggan dapat diuji coba seketika tanpa konfigurasi tambahan!
 
-### Akun Uji Coba Demo:
+Akun Uji Coba Demo:
 - **Admin**:
   - Email: `admin@xivascarf.com`
   - Password: `admin123`
@@ -54,7 +59,7 @@ Aplikasi XivaScarf dilengkapi dengan **Dual-Mode Data Layer**:
 
 ---
 
-## 📁 Struktur Folder
+📁 Struktur Folder
 
 ```text
 xivascarf/
@@ -109,7 +114,7 @@ xivascarf/
 
 ---
 
-## 💻 Panduan Menjalankan Aplikasi
+💻 Panduan Menjalankan Aplikasi
 
 1. Buka folder proyek `xivascarf/` di browser pilihan Anda (Google Chrome, Edge, Firefox, Safari).
 2. Jalankan `index.html` atau langsung buka `login.html`.
