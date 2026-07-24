@@ -120,3 +120,93 @@ xivascarf/
 2. Jalankan `index.html` atau langsung buka `login.html`.
 3. Klik tombol **Login Sebagai Demo Admin** untuk menguji dashboard pengelola, grafik Chart.js, CRUD produk/kategori, dan ekspor laporan PDF/Excel.
 4. Klik tombol **Login Sebagai Demo Pelanggan** untuk mencoba pengalaman belanja, menambah keranjang, checkout, dan melacak riwayat pesanan.
+
+# 📸 Dokumentasi Aplikasi
+
+## 1. Halaman Login
+
+![Login](assets/screenshots/login.png)
+
+---
+
+## 2. Halaman Register
+
+![Register](assets/screenshots/register.png)
+
+---
+
+## 3. Verifikasi Email Firebase
+
+![Verifikasi Email Firebase](assets/screenshots/Verifikasi%20Email%20Firebase.png)
+
+---
+
+## 4. Dashboard Admin
+
+![Dashboard Admin](assets/screenshots/Dashboard%20Admin.png)
+
+---
+
+## 5. CRUD Produk
+
+![CRUD Produk](assets/screenshots/CRUD%20Produk.png)
+
+---
+
+## 6. CRUD Kategori
+
+![CRUD Kategori](assets/screenshots/CRUD%20Kategori.png)
+
+---
+
+## 7. Kelola Pesanan
+
+![Kelola Pesanan](assets/screenshots/Kelola%20Pesanan.png)
+
+---
+
+## 8. Data Pelanggan
+
+![Data Pelanggan](assets/screenshots/Data%20Pelanggan.png)
+
+---
+
+## 9. Laporan Penjualan
+
+![Laporan Penjualan](assets/screenshots/Laporan%20Penjualan%20,%20Export%20PDF%20&%20Export%20Exel.png)
+
+---
+
+## 10. Profil Admin
+
+![Profil Admin](assets/screenshots/Profil%20Admin.png)
+
+---
+
+## 11. Dashboard User
+
+![Dashboard User](assets/screenshots/Dashboard%20User.png)
+
+---
+
+## 12. Keranjang Belanja
+
+![Keranjang Belanja](assets/screenshots/Keranjang%20Belanja%20(Shopping%20Cart).png)
+
+---
+
+## 13. Checkout
+
+![Checkout](assets/screenshots/checkout.png)
+
+---
+
+## 14. Riwayat Pembelian
+
+![Riwayat Pembelian](assets/screenshots/Riwaya%20Pembelian.png)
+
+---
+
+## 15. Wishlist
+
+![Wishlist](assets/screenshots/Wishlist.png)
