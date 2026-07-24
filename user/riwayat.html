@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riwayat Pembelian - XivaScarf</title>
+
+  <!-- Bootstrap 5 CSS & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-xiva sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="home.html">
+        <i class="bi bi-heart-pulse-fill text-primary" style="color: var(--primary) !important;"></i>
+        <span>XivaScarf</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navRiwayatContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navRiwayatContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="home.html">Katalog Jilbab</a></li>
+          <li class="nav-item"><a class="nav-link active" href="riwayat.html">Riwayat Pembelian</a></li>
+          <li class="nav-item"><a class="nav-link" href="wishlist.html">Wishlist</a></li>
+        </ul>
+
+        <div class="d-flex align-items-center gap-3">
+          <a href="keranjang.html" class="btn btn-xiva-secondary position-relative me-2">
+            <i class="bi bi-cart3"></i> Keranjang
+            <span id="cart-badge-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+          </a>
+          <div class="dropdown">
+            <button class="btn btn-xiva-outline dropdown-toggle" type="button" data-bs-toggle="dropdown">
+              <i class="bi bi-person-circle me-1"></i> <span class="user-display-name">Pelanggan</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow">
+              <li><a class="dropdown-item" href="profil.html"><i class="bi bi-person me-2"></i> Profil Saya</a></li>
+              <li><a class="dropdown-item" href="riwayat.html"><i class="bi bi-bag-check me-2"></i> Riwayat Pesanan</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger btn-logout" href="#"><i class="bi bi-box-arrow-right me-2"></i> Keluar</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-5">
+    <h2 class="brand-font fw-bold mb-4"><i class="bi bi-clock-history text-primary me-2"></i>Riwayat Pembelian Saya</h2>
+
+    <div id="user-order-history-list">
+      <!-- Order cards rendered dynamically -->
+    </div>
+  </div>
+
+  <!-- Receipt Invoice Modal -->
+  <div class="modal fade" id="invoiceModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title brand-font fw-bold" id="invoiceTitle">Faktur Pembelian Jilbab</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-4" id="invoice-modal-body">
+          <!-- Rendered dynamically -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+          <button type="button" class="btn btn-xiva-primary" onclick="window.print()"><i class="bi bi-printer me-1"></i> Cetak Bukti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer-xiva mt-5">
+    <div class="container text-center">
+      <p class="text-muted mb-0">&copy; 2026 XivaScarf Boutique.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/firebase-config.js"></script>
+  <script src="../js/auth.js"></script>
+  <script>AuthModule.requireAuth('user');</script>
+  <script src="../js/role.js"></script>
+  <script src="../js/produk.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      renderUserOrderHistory();
+    });
+
+    function renderUserOrderHistory() {
+      const user = AuthModule.getCurrentUser();
+      const container = document.getElementById('user-order-history-list');
+      if (!user || !container) return;
+
+      const orders = DBStore.getCollection(DBStore.KEYS.PESANAN).filter(o => o.uid === user.uid);
+
+      if (orders.length === 0) {
+        container.innerHTML = `
+          <div class="card card-xiva p-5 text-center">
+            <i class="bi bi-bag-x display-1 text-muted"></i>
+            <h5 class="mt-3 text-muted">Belum ada riwayat pesanan</h5>
+            <p class="text-muted">Ayo lakukan pembelian jilbab impian Anda pertama kali!</p>
+            <div>
+              <a href="home.html" class="btn btn-xiva-primary">Mulai Belanja</a>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = orders.map(o => `
+        <div class="card card-xiva p-4 mb-3 shadow-sm">
+          <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 pb-2 border-bottom">
+            <div>
+              <strong class="fs-6 me-2">${o.idPesanan}</strong>
+              <small class="text-muted"><i class="bi bi-calendar3 me-1"></i>${o.tanggal}</small>
+            </div>
+            <span class="badge-status ${getStatusBadgeClass(o.status)}">${o.status}</span>
+          </div>
+
+          <div class="row align-items-center g-3">
+            <div class="col-md-7">
+              <div class="mb-2">
+                ${(o.items || []).map(item => `
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="text-dark fw-semibold">${item.nama}</span>
+                    <span class="text-muted small">${item.qty}x @ ${ProductModule.formatRupiah(item.harga)}</span>
+                  </div>
+                `).join('')}
+              </div>
+              <small class="text-muted"><i class="bi bi-credit-card me-1"></i>Pembayaran: ${o.metodePembayaran}</small>
+            </div>
+
+            <div class="col-md-5 text-md-end border-start-md">
+              <span class="text-muted d-block small">Total Pembayaran</span>
+              <span class="fs-4 fw-bold text-primary" style="color: var(--primary) !important;">
+                ${ProductModule.formatRupiah(o.total)}
+              </span>
+              <div class="mt-2">
+                <button onclick="viewInvoice('${o.idPesanan}')" class="btn btn-xiva-secondary btn-sm">
+                  <i class="bi bi-file-earmark-text me-1"></i> Lihat Invoice
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function viewInvoice(idPesanan) {
+      const orders = DBStore.getCollection(DBStore.KEYS.PESANAN);
+      const o = orders.find(item => item.idPesanan === idPesanan);
+      if (!o) return;
+
+      const body = document.getElementById('invoice-modal-body');
+      body.innerHTML = `
+        <div class="d-flex justify-content-between mb-4">
+          <div>
+            <h4 class="brand-font fw-bold text-primary mb-1" style="color: var(--primary) !important;">XivaScarf</h4>
+            <small class="text-muted">Boutique Jilbab Modern & Elegant</small>
+          </div>
+          <div class="text-end">
+            <h6 class="fw-bold mb-0">INVOICE PESANAN</h6>
+            <small class="text-muted">${o.idPesanan}</small><br>
+            <small class="text-muted">Tanggal: ${o.tanggal}</small>
+          </div>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col-6">
+            <strong>Penerima:</strong>
+            <p class="mb-0 text-muted">${o.namaPenerima}<br>${o.nohp}<br>${o.alamat}</p>
+          </div>
+          <div class="col-6 text-end">
+            <strong>Metode Pembayaran:</strong>
+            <p class="mb-0 text-muted">${o.metodePembayaran}<br>Status: <strong>${o.status}</strong></p>
+          </div>
+        </div>
+
+        <table class="table table-bordered align-middle mb-3">
+          <thead class="table-light">
+            <tr>
+              <th>Item Jilbab</th>
+              <th class="text-center">Jumlah</th>
+              <th class="text-end">Harga Satuan</th>
+              <th class="text-end">Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${(o.items || []).map(i => `
+              <tr>
+                <td>${i.nama}</td>
+                <td class="text-center">${i.qty}</td>
+                <td class="text-end">${ProductModule.formatRupiah(i.harga)}</td>
+                <td class="text-end fw-bold">${ProductModule.formatRupiah(i.harga * i.qty)}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3" class="text-end fw-bold">Total Pembayaran:</td>
+              <td class="text-end fw-bold text-primary">${ProductModule.formatRupiah(o.total)}</td>
+            </tr>
+          </tfoot>
+        </table>
+      `;
+
+      const modal = new bootstrap.Modal(document.getElementById('invoiceModal'));
+      modal.show();
+    }
+
+    function getStatusBadgeClass(status) {
+      switch (status) {
+        case 'Menunggu Pembayaran': return 'badge-pending';
+        case 'Diproses': return 'badge-processing';
+        case 'Dikirim': return 'badge-shipped';
+        case 'Selesai': return 'badge-completed';
+        default: return 'badge-cancelled';
+      }
+    }
+  </script>
+</body>
+</html>

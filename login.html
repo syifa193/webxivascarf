@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Masuk - XivaScarf</title>
+
+  <!-- Bootstrap 5 CSS & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="d-flex align-items-center justify-content-center py-5" style="background: linear-gradient(135deg, var(--secondary) 0%, var(--background) 100%); min-height: 100vh;">
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-5">
+        <div class="card card-xiva p-4 p-md-5 shadow-lg">
+          <div class="text-center mb-4">
+            <a href="index.html" class="brand-font text-decoration-none h2 fw-bold" style="color: var(--primary);">
+              XivaScarf
+            </a>
+            <h5 class="fw-bold mt-2 text-dark">Selamat Datang Kembali</h5>
+            <p class="text-muted small">Silakan masuk ke akun Anda</p>
+          </div>
+
+          <div id="login-alert" class="alert alert-danger d-none"></div>
+
+          <form id="login-form">
+            <div class="mb-3">
+              <label for="email" class="form-label">Alamat Email</label>
+              <div class="input-group">
+                <span class="input-group-text bg-white border-end-0"><i class="bi bi-envelope text-muted"></i></span>
+                <input type="email" id="email" class="form-control border-start-0" placeholder="nama@email.com" required>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label for="password" class="form-label">Password</label>
+              <div class="input-group">
+                <span class="input-group-text bg-white border-end-0"><i class="bi bi-lock text-muted"></i></span>
+                <input type="password" id="password" class="form-control border-start-0" placeholder="••••••••" required>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-xiva-primary w-100 mb-3 py-2 fs-6">
+              <i class="bi bi-box-arrow-in-right me-2"></i> Masuk Sekarang
+            </button>
+          </form>
+
+          <hr class="my-4">
+
+          <!-- Demo Quick Login Helper Buttons -->
+          <div class="text-center mb-3">
+            <small class="text-muted fw-bold d-block mb-2">UJI COBA INSTAN (DEMO ONE-CLICK LOGIN)</small>
+            <div class="d-grid gap-2">
+              <button type="button" id="btn-demo-admin" class="btn btn-xiva-secondary btn-sm">
+                <i class="bi bi-shield-lock me-1"></i> Login Sebagai Demo Admin
+              </button>
+              <button type="button" id="btn-demo-user" class="btn btn-xiva-accent btn-sm">
+                <i class="bi bi-person-check me-1"></i> Login Sebagai Demo Pelanggan
+              </button>
+            </div>
+          </div>
+
+          <div class="text-center mt-3">
+            <small class="text-muted">Belum punya akun? <a href="register.html" class="fw-bold text-primary text-decoration-none">Daftar Akun Baru</a></small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/role.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

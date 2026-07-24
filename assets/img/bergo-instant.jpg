@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#734b6b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8B5E83;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#grad)"/>
+  <circle cx="400" cy="250" r="120" fill="#ffffff" opacity="0.2"/>
+  <text x="50%" y="45%" font-family="sans-serif" font-size="48" font-weight="bold" fill="#ffffff" text-anchor="middle">🌿</text>
+  <text x="50%" y="65%" font-family="sans-serif" font-size="32" font-weight="bold" fill="#ffffff" text-anchor="middle">Bergo Instant Daily</text>
+</svg>

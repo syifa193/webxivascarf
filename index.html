@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XivaScarf - Sistem Penjualan Jilbab Berbasis Web</title>
+
+  <!-- Bootstrap 5 CSS & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+  <!-- Custom Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-xiva sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="bi bi-heart-pulse-fill text-primary" style="color: var(--primary) !important;"></i>
+        <span>XivaScarf</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Beranda</a></li>
+          <li class="nav-item"><a class="nav-link" href="user/home.html">Katalog Jilbab</a></li>
+        </ul>
+
+        <div class="d-flex align-items-center gap-2">
+          <a href="login.html" class="btn btn-xiva-outline">
+            <i class="bi bi-box-arrow-in-right me-1"></i> Masuk
+          </a>
+          <a href="register.html" class="btn btn-xiva-primary">
+            <i class="bi bi-person-plus me-1"></i> Daftar
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="py-5" style="background: linear-gradient(135deg, var(--secondary) 0%, var(--background) 100%);">
+    <div class="container py-5">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <span class="badge badge-xiva-accent mb-3 fs-6">Koleksi Jilbab Hijab Elegance 2026</span>
+          <h1 class="display-4 brand-font fw-bold text-dark mb-3">
+            Anggun & Nyaman Sepanjang Hari Bersama <span style="color: var(--primary);">XivaScarf</span>
+          </h1>
+          <p class="lead text-muted mb-4">
+            Temukan koleksi pashmina silk, segiempat voal, bergo instan, dan hijab syar'i bermutu tinggi dengan sentuhan warna lembut yang mempesona.
+          </p>
+          <div class="d-flex flex-wrap gap-3">
+            <a href="user/home.html" class="btn btn-xiva-primary btn-lg">
+              <i class="bi bi-bag-heart me-2"></i> Belanja Sekarang
+            </a>
+            <a href="login.html" class="btn btn-xiva-secondary btn-lg">
+              <i class="bi bi-speedometer2 me-2"></i> Demo Dashboard
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="card card-xiva p-3 shadow-lg">
+            <img src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%238B5E83%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23D4A373%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22silk%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFFFFF%22%20stop-opacity%3D%220.4%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%23FFFFFF%22%20stop-opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23000000%22%20stop-opacity%3D%220.15%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3Cfilter%20id%3D%22shadow%22%20x%3D%22-20%25%22%20y%3D%22-20%25%22%20width%3D%22140%25%22%20height%3D%22140%25%22%3E%0A%20%20%20%20%20%20%20%20%3CfeDropShadow%20dx%3D%220%22%20dy%3D%2212%22%20stdDeviation%3D%2216%22%20flood-color%3D%22%23000%22%20flood-opacity%3D%220.2%22%2F%3E%0A%20%20%20%20%20%20%3C%2Ffilter%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3C!--%20Decorative%20background%20patterns%20--%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22250%22%20r%3D%22190%22%20fill%3D%22%23FFFFFF%22%20fill-opacity%3D%220.12%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22250%22%20r%3D%22150%22%20fill%3D%22%23FFFFFF%22%20fill-opacity%3D%220.15%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%20120%20500%20Q%20300%20420%20480%20500%22%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%222%22%20fill%3D%22none%22%20opacity%3D%220.4%22%2F%3E%0A%0A%20%20%20%20%3C!--%20Pashmina%20Hijab%20Drape%20Illustration%20--%3E%0A%20%20%20%20%3Cg%20filter%3D%22url(%23shadow)%22%3E%0A%20%20%20%20%20%20%3C!--%20Face%20Oval%20%2F%20Inner%20Ciput%20--%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%20245%20160%20C%20245%20120%2C%20355%20120%2C%20355%20160%20C%20355%20210%2C%20245%20210%2C%20245%20160%20Z%22%20fill%3D%22%23F8EDEB%22%20opacity%3D%220.95%22%2F%3E%0A%20%20%20%20%20%20%3C!--%20Ciput%20Band%20--%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%20252%20145%20Q%20300%20135%20348%20145%20Q%20350%20158%20300%20162%20Q%20250%20158%20252%20145%20Z%22%20fill%3D%22%23FFFFFF%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%20%20%3C!--%20Main%20Scarf%20Wrap%20Around%20Head%20--%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%20230%20170%20C%20220%20110%2C%20380%20110%2C%20370%20170%20C%20375%20220%2C%20380%20280%2C%20370%20330%20C%20340%20370%2C%20260%20370%2C%20230%20330%20C%20220%20280%2C%20225%20220%2C%20230%20170%20Z%22%20fill%3D%22%238B5E83%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%20%20%3C!--%20Pashmina%20Left%20Flowing%20Tail%20--%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%20235%20240%20C%20180%20270%2C%20150%20350%2C%20160%20440%20C%20190%20450%2C%20230%20430%2C%20245%20340%20Z%22%20fill%3D%22%238B5E83%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%20235%20240%20C%20180%20270%2C%20150%20350%2C%20160%20440%20C%20190%20450%2C%20230%20430%2C%20245%20340%20Z%22%20fill%3D%22url(%23silk)%22%2F%3E%0A%0A%20%20%20%20%20%20%3C!--%20Pashmina%20Right%20Wrapped%20Layer%20--%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%20365%20240%20C%20410%20270%2C%20430%20340%2C%20400%20420%20C%20360%20430%2C%20340%20380%2C%20345%20320%20Z%22%20fill%3D%22%238B5E83%22%20opacity%3D%220.9%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%20%20%3C!--%20Fold%20Lines%20%2F%20Folds%20--%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%20250%20200%20Q%20300%20220%20350%20200%22%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%20opacity%3D%220.6%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%20240%20230%20Q%20300%20255%20360%20230%22%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%20opacity%3D%220.5%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%20245%20260%20Q%20300%20285%20355%20260%22%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%20opacity%3D%220.4%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%0A%20%20%20%20%3C!--%20Bottom%20Title%20Banner%20--%3E%0A%20%20%20%20%3Crect%20x%3D%2240%22%20y%3D%22475%22%20width%3D%22520%22%20height%3D%2285%22%20rx%3D%2218%22%20fill%3D%22%23FFFFFF%22%20fill-opacity%3D%220.92%22%20filter%3D%22url(%23shadow)%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22515%22%20font-family%3D%22'Playfair%20Display'%2C%20Georgia%2C%20serif%22%20font-size%3D%2224%22%20font-weight%3D%22bold%22%20fill%3D%22%23333333%22%20text-anchor%3D%22middle%22%3EXivaScarf%20Boutique%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22542%22%20font-family%3D%22'Plus%20Jakarta%20Sans'%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22600%22%20fill%3D%22%238B5E83%22%20text-anchor%3D%22middle%22%3E%E2%9C%A8%20Koleksi%20Jilbab%20Hijab%20Elegance%202026%20%E2%80%A2%20PASHMINA%20COLLECTION%20%E2%9C%A8%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E" class="img-fluid rounded-3 shadow" alt="XivaScarf Banner">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature Highlights -->
+  <section class="py-5 bg-white">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="brand-font fw-bold">Mengapa Memilih XivaScarf?</h2>
+        <p class="text-muted">Layanan belanja jilbab modern dengan teknologi terbaik</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card card-xiva h-100 p-4 text-center">
+            <div class="stat-icon primary mx-auto mb-3">
+              <i class="bi bi-shield-check"></i>
+            </div>
+            <h5 class="fw-bold">Bahan Premium Quality</h5>
+            <p class="text-muted mb-0">Serat kain voal ultrafine & silk impor yang lembut, adem, dan mudah dibentuk.</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card card-xiva h-100 p-4 text-center">
+            <div class="stat-icon accent mx-auto mb-3">
+              <i class="bi bi-truck"></i>
+            </div>
+            <h5 class="fw-bold">Pengiriman Cepat & Aman</h5>
+            <p class="text-muted mb-0">Integrasi pilihan pembayaran lengkap dan pelacakan status pesanan secara realtime.</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card card-xiva h-100 p-4 text-center">
+            <div class="stat-icon success mx-auto mb-3">
+              <i class="bi bi-graph-up-arrow"></i>
+            </div>
+            <h5 class="fw-bold">Dashboard Admin Lengkap</h5>
+            <p class="text-muted mb-0">Fitur manajemen stok, grafik penjualan Chart.js, dan laporan PDF/Excel serba otomatis.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-xiva">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-6">
+          <h4 class="brand-font fw-bold text-primary mb-2" style="color: var(--primary) !important;">XivaScarf</h4>
+          <p class="text-muted">Sistem Penjualan Jilbab Berbasis Web dengan Firebase Authentication & Cloud Firestore.</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <p class="text-muted mb-0">&copy; 2026 XivaScarf. Hak Cipta Dilindungi Undang-Undang.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

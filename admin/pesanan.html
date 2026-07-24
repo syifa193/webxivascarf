@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kelola Pesanan - XivaScarf Admin</title>
+
+  <!-- Bootstrap 5 CSS & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+
+    <aside class="admin-sidebar">
+      <div class="sidebar-brand">
+        <i class="bi bi-heart-pulse-fill text-primary"></i>
+        <span>XivaScarf Admin</span>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="nav-item"><a href="dashboard.html" class="nav-link"><i class="bi bi-grid-fill"></i> Dashboard</a></li>
+        <li class="nav-item"><a href="produk.html" class="nav-link"><i class="bi bi-box-seam"></i> Produk Jilbab</a></li>
+        <li class="nav-item"><a href="kategori.html" class="nav-link"><i class="bi bi-tags"></i> Kategori</a></li>
+        <li class="nav-item"><a href="pesanan.html" class="nav-link active"><i class="bi bi-bag-check"></i> Kelola Pesanan</a></li>
+        <li class="nav-item"><a href="pelanggan.html" class="nav-link"><i class="bi bi-people"></i> Data Pelanggan</a></li>
+        <li class="nav-item"><a href="laporan.html" class="nav-link"><i class="bi bi-file-earmark-bar-graph"></i> Laporan Penjualan</a></li>
+        <li class="nav-item"><a href="profil.html" class="nav-link"><i class="bi bi-person-gear"></i> Profil Admin</a></li>
+      </ul>
+
+      <div class="p-3 border-top">
+        <a href="#" class="btn btn-outline-danger w-100 btn-logout"><i class="bi bi-box-arrow-right me-1"></i> Keluar</a>
+      </div>
+    </aside>
+
+    <main class="admin-content">
+      <header class="admin-header">
+        <div class="d-flex align-items-center gap-3">
+          <button class="btn btn-xiva-secondary d-lg-none" onclick="toggleAdminSidebar()">
+            <i class="bi bi-list fs-5"></i>
+          </button>
+          <div>
+            <h3 class="brand-font fw-bold mb-1">Pengelolaan Pesanan</h3>
+            <p class="text-muted mb-0">Pantau transaksi dan perbarui status pengiriman pelanggan</p>
+          </div>
+        </div>
+      </header>
+
+      <div class="card card-xiva p-4">
+        <div class="row g-3 mb-4">
+          <div class="col-md-4">
+            <input type="text" id="search-pesanan" class="form-control" placeholder="Cari ID Pesanan atau Nama Pelanggan...">
+          </div>
+          <div class="col-md-4">
+            <select id="filter-status" class="form-select">
+              <option value="Semua">-- Semua Status Pesanan --</option>
+              <option value="Menunggu Pembayaran">Menunggu Pembayaran</option>
+              <option value="Diproses">Diproses</option>
+              <option value="Dikirim">Dikirim</option>
+              <option value="Selesai">Selesai</option>
+              <option value="Dibatalkan">Dibatalkan</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover align-middle">
+            <thead class="table-light">
+              <tr>
+                <th>ID Pesanan</th>
+                <th>Tanggal</th>
+                <th>Penerima & Alamat</th>
+                <th>Rincian Jilbab</th>
+                <th>Total</th>
+                <th>Status Saat Ini</th>
+                <th>Ubah Status</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="admin-pesanan-table-body">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+  <!-- Order Invoice Modal for Admin -->
+  <div class="modal fade" id="adminInvoiceModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title brand-font fw-bold">Detail & Rincian Pesanan</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-4" id="admin-invoice-modal-body">
+          <!-- Rendered dynamically -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+          <button type="button" class="btn btn-xiva-primary" onclick="window.print()"><i class="bi bi-printer me-1"></i> Cetak Bukti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/firebase-config.js"></script>
+  <script src="../js/auth.js"></script>
+  <script>AuthModule.requireAuth('admin');</script>
+  <script src="../js/role.js"></script>
+  <script src="../js/produk.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      renderAdminPesananTable();
+
+      document.getElementById('search-pesanan').addEventListener('input', renderAdminPesananTable);
+      document.getElementById('filter-status').addEventListener('change', renderAdminPesananTable);
+    });
+
+        function renderAdminPesananTable() {
+      const tbody = document.getElementById('admin-pesanan-table-body');
+      const search = document.getElementById('search-pesanan').value.trim().toLowerCase();
+      const statusFilter = document.getElementById('filter-status').value;
+
+      let orders = DBStore.getCollection(DBStore.KEYS.PESANAN);
+
+      if (search) {
+        orders = orders.filter(o => o.idPesanan.toLowerCase().includes(search) || o.namaPenerima.toLowerCase().includes(search));
+      }
+
+      if (statusFilter !== 'Semua') {
+        orders = orders.filter(o => o.status === statusFilter);
+      }
+
+      if (orders.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" class="text-center py-4 text-muted">Tidak ada data pesanan.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = orders.map(o => `
+        <tr>
+          <td><strong>${o.idPesanan}</strong></td>
+          <td><small class="text-muted">${o.tanggal}</small></td>
+          <td>
+            <strong>${o.namaPenerima}</strong><br>
+            <small class="text-muted"><i class="bi bi-geo-alt me-1"></i>${o.alamat} (${o.nohp})</small>
+          </td>
+          <td>
+            <small class="d-block text-dark fw-semibold">
+              ${(o.items || []).map(i => `${i.nama} (${i.qty}x)`).join('<br>')}
+            </small>
+          </td>
+          <td class="fw-bold text-primary">${ProductModule.formatRupiah(o.total)}</td>
+          <td><span class="badge-status ${getStatusBadgeClass(o.status)}">${o.status}</span></td>
+          <td>
+            <select class="form-select form-select-sm" onchange="updateOrderStatus('${o.idPesanan}', this.value)">
+              <option value="Menunggu Pembayaran" ${o.status === 'Menunggu Pembayaran' ? 'selected' : ''}>Menunggu Pembayaran</option>
+              <option value="Diproses" ${o.status === 'Diproses' ? 'selected' : ''}>Diproses</option>
+              <option value="Dikirim" ${o.status === 'Dikirim' ? 'selected' : ''}>Dikirim</option>
+              <option value="Selesai" ${o.status === 'Selesai' ? 'selected' : ''}>Selesai</option>
+              <option value="Dibatalkan" ${o.status === 'Dibatalkan' ? 'selected' : ''}>Dibatalkan</option>
+            </select>
+          </td>
+          <td>
+            <button onclick="viewAdminInvoice('${o.idPesanan}')" class="btn btn-outline-primary btn-sm" title="Lihat Faktur">
+              <i class="bi bi-file-earmark-text"></i>
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function viewAdminInvoice(idPesanan) {
+      const orders = DBStore.getCollection(DBStore.KEYS.PESANAN);
+      const o = orders.find(item => item.idPesanan === idPesanan);
+      if (!o) return;
+
+      const body = document.getElementById('admin-invoice-modal-body');
+      body.innerHTML = `
+        <div class="d-flex justify-content-between mb-4">
+          <div>
+            <h4 class="brand-font fw-bold text-primary mb-1">XivaScarf Boutique</h4>
+            <small class="text-muted">Bukti Faktur Transaksi Pelanggan</small>
+          </div>
+          <div class="text-end">
+            <h6 class="fw-bold mb-0">FAKTUR PESANAN</h6>
+            <small class="text-muted">${o.idPesanan}</small><br>
+            <small class="text-muted">Tanggal: ${o.tanggal}</small>
+          </div>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col-6">
+            <strong>Penerima:</strong>
+            <p class="mb-0 text-muted">${o.namaPenerima}<br>${o.nohp}<br>${o.alamat}</p>
+          </div>
+          <div class="col-6 text-end">
+            <strong>Metode Pembayaran:</strong>
+            <p class="mb-0 text-muted">${o.metodePembayaran}<br>Status: <strong>${o.status}</strong></p>
+          </div>
+        </div>
+
+        <table class="table table-bordered align-middle mb-3">
+          <thead class="table-light">
+            <tr>
+              <th>Item Jilbab</th>
+              <th class="text-center">Jumlah</th>
+              <th class="text-end">Harga Satuan</th>
+              <th class="text-end">Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${(o.items || []).map(i => `
+              <tr>
+                <td>${i.nama}</td>
+                <td class="text-center">${i.qty}</td>
+                <td class="text-end">${ProductModule.formatRupiah(i.harga)}</td>
+                <td class="text-end fw-bold">${ProductModule.formatRupiah(i.harga * i.qty)}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3" class="text-end fw-bold">Total Pembayaran:</td>
+              <td class="text-end fw-bold text-primary">${ProductModule.formatRupiah(o.total)}</td>
+            </tr>
+          </tfoot>
+        </table>
+      `;
+
+      const modalEl = document.getElementById('adminInvoiceModal');
+      const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+      modal.show();
+    }
+
+    function updateOrderStatus(idPesanan, newStatus) {
+      const orders = DBStore.getCollection(DBStore.KEYS.PESANAN);
+      const index = orders.findIndex(o => o.idPesanan === idPesanan);
+      if (index !== -1) {
+        orders[index].status = newStatus;
+        DBStore.setCollection(DBStore.KEYS.PESANAN, orders);
+        showToast(`Status pesanan ${idPesanan} diubah menjadi "${newStatus}"!`, 'success');
+        renderAdminPesananTable();
+      }
+    }
+
+    function getStatusBadgeClass(status) {
+      switch (status) {
+        case 'Menunggu Pembayaran': return 'badge-pending';
+        case 'Diproses': return 'badge-processing';
+        case 'Dikirim': return 'badge-shipped';
+        case 'Selesai': return 'badge-completed';
+        default: return 'badge-cancelled';
+      }
+    }
+  </script>
+</body>
+</html>

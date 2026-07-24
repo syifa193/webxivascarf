@@ -1,0 +1,307 @@
+/* XivaScarf Core Design System */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+
+:root {
+  --primary: #8B5E83;
+  --primary-hover: #734b6b;
+  --primary-light: #f3ebf2;
+  --secondary: #F8EDEB;
+  --secondary-dark: #f0dad6;
+  --accent: #D4A373;
+  --accent-hover: #c49261;
+  --accent-light: #faeeda;
+  --background: #FFFDFB;
+  --surface: #FFFFFF;
+  --text-main: #333333;
+  --text-muted: #6c757d;
+  --border-color: #ebdcdb;
+  
+  --shadow-sm: 0 2px 8px rgba(139, 94, 131, 0.06);
+  --shadow-md: 0 6px 18px rgba(139, 94, 131, 0.1);
+  --shadow-lg: 0 12px 30px rgba(139, 94, 131, 0.15);
+  
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 50px;
+  
+  --transition: all 0.28s ease-in-out;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--background);
+  color: var(--text-main);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4, .brand-font {
+  font-family: 'Playfair Display', serif;
+}
+
+/* Navbar Customization */
+.navbar-xiva {
+  background: rgba(255, 253, 251, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.85rem 1.5rem;
+  transition: var(--transition);
+}
+
+.navbar-xiva .navbar-brand {
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.navbar-xiva .navbar-brand img {
+  height: 42px;
+  width: auto;
+  border-radius: var(--radius-sm);
+}
+
+.navbar-xiva .nav-link {
+  color: var(--text-main);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-pill);
+  transition: var(--transition);
+}
+
+.navbar-xiva .nav-link:hover,
+.navbar-xiva .nav-link.active {
+  color: var(--primary);
+  background-color: var(--secondary);
+}
+
+/* Custom Buttons */
+.btn-xiva-primary {
+  background-color: var(--primary);
+  color: #ffffff;
+  border: none;
+  font-weight: 600;
+  padding: 0.65rem 1.4rem;
+  border-radius: var(--radius-pill);
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-xiva-primary:hover {
+  background-color: var(--primary-hover);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-xiva-secondary {
+  background-color: var(--secondary);
+  color: var(--primary);
+  border: 1px solid var(--border-color);
+  font-weight: 600;
+  padding: 0.65rem 1.4rem;
+  border-radius: var(--radius-pill);
+  transition: var(--transition);
+}
+
+.btn-xiva-secondary:hover {
+  background-color: var(--secondary-dark);
+  color: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+.btn-xiva-accent {
+  background-color: var(--accent);
+  color: #ffffff;
+  border: none;
+  font-weight: 600;
+  padding: 0.65rem 1.4rem;
+  border-radius: var(--radius-pill);
+  transition: var(--transition);
+}
+
+.btn-xiva-accent:hover {
+  background-color: var(--accent-hover);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-xiva-outline {
+  background-color: transparent;
+  color: var(--primary);
+  border: 1.5px solid var(--primary);
+  font-weight: 600;
+  padding: 0.55rem 1.2rem;
+  border-radius: var(--radius-pill);
+  transition: var(--transition);
+}
+
+.btn-xiva-outline:hover {
+  background-color: var(--primary);
+  color: #ffffff;
+}
+
+/* Custom Cards */
+.card-xiva {
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  overflow: hidden;
+}
+
+.card-xiva:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Badges */
+.badge-xiva-primary {
+  background-color: var(--primary-light);
+  color: var(--primary);
+  border-radius: var(--radius-pill);
+  padding: 0.35em 0.8em;
+  font-weight: 600;
+}
+
+.badge-xiva-accent {
+  background-color: var(--accent-light);
+  color: #a86e30;
+  border-radius: var(--radius-pill);
+  padding: 0.35em 0.8em;
+  font-weight: 600;
+}
+
+.badge-status {
+  padding: 0.4em 0.9em;
+  border-radius: var(--radius-pill);
+  font-size: 0.82rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.badge-pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.badge-processing {
+  background-color: #cce5ff;
+  color: #004085;
+}
+
+.badge-shipped {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+.badge-completed {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.badge-cancelled {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Forms */
+.form-control, .form-select {
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border-color);
+  padding: 0.65rem 1rem;
+  transition: var(--transition);
+  background-color: #fff;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.2rem rgba(139, 94, 131, 0.18);
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--text-main);
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+}
+
+/* Footer */
+footer.footer-xiva {
+  background-color: #f7eded;
+  border-top: 1px solid var(--border-color);
+  padding: 2.5rem 0 1.5rem;
+  margin-top: auto;
+}
+
+/* Toast Container */
+#toast-container {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 1100;
+}
+
+/* Product Card Styling */
+.product-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card .img-wrapper {
+  position: relative;
+  overflow: hidden;
+  padding-top: 100%; /* 1:1 Aspect ratio */
+  background: var(--secondary);
+}
+
+.product-card .img-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.product-card:hover .img-wrapper img {
+  transform: scale(1.06);
+}
+
+.product-card .card-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 1.25rem;
+}
+
+.product-card .product-title {
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--text-main);
+  margin-bottom: 0.3rem;
+  text-decoration: none;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-card .product-price {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0.6rem;
+}

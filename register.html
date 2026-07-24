@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pendaftaran - XivaScarf</title>
+
+  <!-- Bootstrap 5 CSS & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body class="d-flex align-items-center justify-content-center py-5"
+  style="background: linear-gradient(135deg, var(--secondary) 0%, var(--background) 100%); min-height: 100vh;">
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-7 col-lg-6">
+        <div class="card card-xiva p-4 p-md-5 shadow-lg">
+          <div class="text-center mb-4">
+            <a href="index.html" class="brand-font text-decoration-none h2 fw-bold" style="color: var(--primary);">
+              XivaScarf
+            </a>
+            <h5 class="fw-bold mt-2 text-dark">Buat Akun Baru</h5>
+            <p class="text-muted small">Bergabunglah untuk menikmati pengalaman belanja jilbab terbaik</p>
+          </div>
+
+          <div id="register-alert" class="alert alert-danger d-none"></div>
+
+          <form id="register-form">
+            <div class="mb-3">
+              <label for="nama" class="form-label">Nama Lengkap</label>
+              <input type="text" id="nama" class="form-control" placeholder="Contoh: Siti Aisyah" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Alamat Email</label>
+              <input type="email" id="email" class="form-control" placeholder="nama@email.com" required>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" id="password" class="form-control" placeholder="••••••••" required>
+              </div>
+              <div class="col-md-6">
+                <label for="confirmPassword" class="form-label">Konfirmasi Password</label>
+                <input type="password" id="confirmPassword" class="form-control" placeholder="••••••••" required>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="nohp" class="form-label">Nomor WhatsApp / HP</label>
+              <input type="tel" id="nohp" class="form-control" placeholder="081234567890" required>
+            </div>
+
+            <div class="mb-4">
+              <label for="alamat" class="form-label">Alamat Pengiriman</label>
+              <textarea id="alamat" class="form-control" rows="2"
+                placeholder="Jl. Anggrek No. 12, RT 01/RW 02, Bandung"></textarea>
+            </div>
+
+            <!-- Role Selector for testing convenience -->
+            <div class="mb-4">
+              <label for="role" class="form-label">Tipe Akun</label>
+              <select id="role" class="form-select">
+                <option value="user" selected>Pelanggan / Customer</option>
+                <option value="admin">Administrator / Admin</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-xiva-primary w-100 mb-3 py-2 fs-6">
+              <i class="bi bi-person-check me-2"></i> Mendaftar Sekarang
+            </button>
+          </form>
+
+          <div class="text-center mt-3">
+            <small class="text-muted">Sudah memiliki akun? <a href="login.html"
+                class="fw-bold text-primary text-decoration-none">Masuk di sini</a></small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/role.js"></script>
+  <script src="js/register.js"></script>
+</body>
+
+</html>
